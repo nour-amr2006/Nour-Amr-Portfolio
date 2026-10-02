@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nour Amr — Data Engineer Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B0730; --indigo:#241B5E; --blue:#3D5AFE; --purple:#8B5CF6;
+  --ink:#1C1540; --muted:#6B6490; --card:#FFFFFF; --bgsoft:#F6F5FF;
+  --chip:#EDE9FF; --chiptext:#4C3AA6; --line:rgba(139,92,246,0.22);
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); box-sizing:border-box;
+}
+*{box-sizing:inherit;}
+html{scroll-behavior:smooth; scroll-padding-top:env(safe-area-inset-top,0px);}
+body{margin:0; font-family:'Inter',system-ui,sans-serif; background:var(--bgsoft); color:var(--ink); -webkit-font-smoothing:antialiased; overflow-x:hidden;}
+h1,h2,h3{font-family:'Sora',sans-serif; margin:0; font-weight:800; letter-spacing:-0.02em;}
+a{color:inherit;}
+.wrap{max-width:1040px; margin:0 auto; padding:0 32px;}
+.icon-layer{position:absolute; inset:0; z-index:0; opacity:0.92;}
+
+header.nav{position:sticky; top:0; top:env(safe-area-inset-top,0px); z-index:30; background:rgba(11,7,48,0.75); backdrop-filter:blur(10px);}
+.navrow{display:flex; align-items:center; justify-content:space-between; padding:16px 32px; max-width:1040px; margin:0 auto;}
+.navrow .mark{font-family:'Sora',sans-serif; font-weight:700; font-size:1rem; color:#fff;}
+.navlinks{display:flex; gap:20px; font-size:0.82rem; flex-wrap:wrap;}
+.navlinks a{text-decoration:none; color:rgba(255,255,255,0.75); transition:color .15s;}
+.navlinks a:hover{color:#fff;}
+
+.hero{position:relative; overflow:hidden; min-height:80vh; display:flex; flex-direction:column; justify-content:center; padding:60px 0;
+  background:linear-gradient(165deg,#120C38 0%,#1C1450 55%,#241B5E 100%); color:#fff;}
+.hero .wrap{position:relative; z-index:1;}
+.eyebrow{font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; color:rgba(255,255,255,0.7); margin-bottom:14px;}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem); line-height:1.02;}
+.hero .role{display:inline-block; margin-top:22px; padding:9px 20px; border:1.5px solid rgba(255,255,255,0.5); border-radius:999px; font-size:0.94rem;}
+.hero .tag{max-width:50ch; margin-top:20px; color:rgba(255,255,255,0.82); line-height:1.6; font-size:1.02rem;}
+
+section{position:relative; padding:64px 0; border-top:1px solid var(--line);}
+.kicker{font-size:0.8rem; letter-spacing:0.08em; text-transform:uppercase; color:var(--purple); margin-bottom:10px;}
+section h2{font-size:clamp(1.8rem,4vw,2.6rem); margin-bottom:22px;}
+
+/* About */
+.about-grid{display:grid; grid-template-columns:1.2fr 0.8fr; gap:40px; align-items:start;}
+@media (max-width:700px){.about-grid{grid-template-columns:1fr;}}
+.about-grid p{color:var(--muted); line-height:1.75; margin:0 0 14px; font-size:1.02rem;}
+.about-card{background:var(--card); border:1px solid var(--line); border-radius:18px; padding:26px; box-shadow:0 10px 30px -18px rgba(93,62,209,0.35);}
+.about-card .dots{display:flex; gap:8px; margin-bottom:16px;}
+.about-card .dots span{width:9px; height:9px; border-radius:50%; background:var(--purple); opacity:0.3;}
+.about-card .dots span:nth-child(1){opacity:1;}
+
+/* Experience / Education */
+.timeline-card{display:flex; gap:20px; align-items:flex-start; background:var(--card); border:1px solid var(--line); border-radius:18px; padding:24px; }
+.logo-badge{flex-shrink:0; width:64px; height:64px; border-radius:16px; background:linear-gradient(135deg,var(--blue),var(--purple)); color:#fff; display:flex; align-items:center; justify-content:center; font-family:'Sora',sans-serif; font-weight:700; font-size:0.78rem; text-align:center; line-height:1.1;}
+.timeline-card h3{font-size:1.15rem; margin-bottom:4px;}
+.timeline-card .org{color:var(--purple); font-size:0.92rem; font-weight:600; margin-bottom:4px;}
+.timeline-card .when{color:var(--muted); font-size:0.85rem;}
+
+/* Skills */
+.skill-cols{display:grid; grid-template-columns:1fr 1fr; gap:32px;}
+@media (max-width:700px){.skill-cols{grid-template-columns:1fr;}}
+.skill-group h3{font-size:1rem; margin-bottom:14px; color:var(--ink);}
+.chips{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{background:var(--chip); color:var(--chiptext); font-size:0.84rem; padding:7px 14px; border-radius:999px; font-weight:500;}
+.lang-grid{margin-top:34px; display:grid; grid-template-columns:repeat(auto-fit,minmax(140px,1fr)); gap:14px;}
+.lang-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px; text-align:center;}
+.lang-card .lv{font-size:0.78rem; color:var(--purple); font-weight:600; margin-top:4px;}
+
+/* Projects */
+.projects{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+@media (max-width:700px){.projects{grid-template-columns:1fr;}}
+.pcard{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px;}
+.pcard h3{font-size:1.05rem; margin-bottom:8px;}
+.pcard p{color:var(--muted); font-size:0.92rem; line-height:1.55; margin:0 0 10px;}
+.pcard .stack{display:flex; flex-wrap:wrap; gap:6px;}
+.pcard .stack span{font-size:0.72rem; background:var(--bgsoft); border:1px solid var(--line); padding:3px 9px; border-radius:7px; color:var(--muted);}
+
+/* Services */
+.services{display:grid; grid-template-columns:repeat(2,1fr); gap:18px;}
+@media (max-width:700px){.services{grid-template-columns:1fr;}}
+.scard{background:var(--card); border:1px solid var(--line); border-radius:16px; padding:22px;}
+.scard .num{font-family:'Sora',sans-serif; font-weight:800; color:var(--purple); font-size:0.85rem; margin-bottom:8px;}
+.scard h3{font-size:1.02rem; margin-bottom:6px;}
+.scard p{color:var(--muted); font-size:0.9rem; line-height:1.5; margin:0;}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#1B1450,#5B3FD1); color:#fff; border-radius:24px; padding:50px 40px; text-align:center; margin:0 32px; max-width:976px; margin-left:auto; margin-right:auto;}
+.cta h2{color:#fff; font-size:clamp(1.8rem,4vw,2.4rem);}
+.cta p{color:rgba(255,255,255,0.82); max-width:46ch; margin:14px auto 26px;}
+.btn{display:inline-block; padding:13px 26px; border-radius:999px; text-decoration:none; font-size:0.94rem; font-weight:600; transition:transform .18s ease;}
+.btn.primary{background:#fff; color:var(--indigo);}
+.btn.ghost{border:1.5px solid rgba(255,255,255,0.6); color:#fff; margin-left:10px;}
+.btn:hover{transform:translateY(-2px);}
+
+/* Thanks */
+.thanks{text-align:center; padding:70px 0 calc(60px + env(safe-area-inset-bottom,0px));}
+.thanks p{color:var(--muted); max-width:52ch; margin:0 auto; line-height:1.7; font-size:1.02rem;}
+.thanks .sig{margin-top:18px; font-family:'Sora',sans-serif; font-weight:700; color:var(--ink);}
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="navrow">
+    <div class="mark">Nour Amr</div>
+    <nav class="navlinks">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero">
+    <svg class="icon-layer" viewBox="0 0 1400 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+      <defs>
+        <linearGradient id="ig" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#D8CFFF"/><stop offset="50%" stop-color="#7C5CFF"/><stop offset="100%" stop-color="#3B2A9E"/>
+        </linearGradient>
+        <linearGradient id="ig2" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#E9E5FF"/><stop offset="100%" stop-color="#5B46D1"/>
+        </linearGradient>
+      </defs>
+
+      <!-- database cylinder + magnifier, top-left -->
+      <g opacity="0.95">
+        <ellipse cx="150" cy="90" rx="92" ry="28" fill="url(#ig2)"/>
+        <rect x="58" y="90" width="184" height="150" fill="url(#ig)"/>
+        <ellipse cx="150" cy="240" rx="92" ry="28" fill="url(#ig)"/>
+        <ellipse cx="150" cy="90" rx="92" ry="28" fill="#fff" opacity="0.1"/>
+        <circle cx="240" cy="215" r="52" fill="none" stroke="url(#ig)" stroke-width="15"/>
+        <line x1="278" y1="253" x2="330" y2="305" stroke="url(#ig)" stroke-width="17" stroke-linecap="round"/>
+      </g>
+
+      <!-- hourglass, top-right -->
+      <g opacity="0.95">
+        <rect x="1228" y="28" width="144" height="18" rx="9" fill="url(#ig2)"/>
+        <rect x="1228" y="214" width="144" height="18" rx="9" fill="url(#ig2)"/>
+        <path d="M1236,46 L1364,46 L1308,124 L1308,136 L1364,214 L1236,214 L1292,136 L1292,124 Z" fill="url(#ig)"/>
+      </g>
+
+      <!-- large gear, right-middle -->
+      <g opacity="0.95" transform="translate(1310,390)">
+        <g fill="url(#ig)">
+          <rect x="-7" y="-80" width="14" height="24" rx="3"/>
+          <rect x="-7" y="56" width="14" height="24" rx="3" transform="rotate(180)"/>
+          <rect x="-7" y="-80" width="14" height="24" rx="3" transform="rotate(60)"/>
+          <rect x="-7" y="-80" width="14" height="24" rx="3" transform="rotate(120)"/>
+          <rect x="-7" y="-80" width="14" height="24" rx="3" transform="rotate(240)"/>
+          <rect x="-7" y="-80" width="14" height="24" rx="3" transform="rotate(300)"/>
+        </g>
+        <circle r="48" fill="url(#ig)"/>
+        <circle r="17" fill="#120C38"/>
+        <ellipse cx="-14" cy="-16" rx="16" ry="9" fill="#fff" opacity="0.14"/>
+      </g>
+
+      <!-- small gear, bottom-left -->
+      <g opacity="0.95" transform="translate(85,470)">
+        <g fill="url(#ig2)">
+          <rect x="-5" y="-50" width="10" height="16" rx="2"/>
+          <rect x="-5" y="34" width="10" height="16" rx="2" transform="rotate(180)"/>
+          <rect x="-5" y="-50" width="10" height="16" rx="2" transform="rotate(60)"/>
+          <rect x="-5" y="-50" width="10" height="16" rx="2" transform="rotate(120)"/>
+          <rect x="-5" y="-50" width="10" height="16" rx="2" transform="rotate(240)"/>
+          <rect x="-5" y="-50" width="10" height="16" rx="2" transform="rotate(300)"/>
+        </g>
+        <circle r="30" fill="url(#ig2)"/>
+        <circle r="11" fill="#120C38"/>
+      </g>
+
+      <!-- folder, bottom-right -->
+      <g opacity="0.95">
+        <rect x="1040" y="500" width="230" height="150" rx="10" fill="url(#ig2)"/>
+        <polygon points="1030,548 1282,548 1250,662 1002,662" fill="url(#ig)"/>
+      </g>
+    </svg>
+    <div class="wrap">
+      <div class="eyebrow">Data Engineer Portfolio</div>
+      <h1>Nour Amr</h1>
+      <div class="role">Data Engineer</div>
+      <p class="tag">Turning raw, chaotic data into pipelines, structure, and clarity.</p>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="kicker">About</div>
+      <h2>Every Dataset Has a Story.<br>From Chaos to Clarity.</h2>
+      <div class="about-grid">
+        <div>
+          <p>I have always believed that behind every complex problem lies an opportunity to create something meaningful. My curiosity about how information works led me to Data Engineering, where I discovered the power of transforming raw data into valuable resources.</p>
+          <p>The challenge isn't just collecting data; it's making it accurate, organized, and useful. Driven by curiosity and a solution-oriented mindset, I approach every challenge as an opportunity to learn, innovate, and deliver practical solutions.</p>
+          <p>I am here to help businesses unlock the potential hidden in their data, turning complexity into clarity and information into value.</p>
+        </div>
+        <div class="about-card">
+          <div class="dots"><span></span><span></span><span></span></div>
+          <p style="color:var(--ink); font-weight:500; line-height:1.6; margin:0;">I don't just process data; I focus on understanding your needs, uncovering possibilities, and creating solutions that make your data work for you.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="experience">
+    <div class="wrap">
+      <div class="kicker">Experience</div>
+      <h2>Where I've Worked</h2>
+      <div class="timeline-card">
+        <div class="logo-badge">DEPI</div>
+        <div>
+          <h3>Intern Data Engineer</h3>
+          <div class="org">DEPI — Data Engineering Track, Round 5</div>
+          <div class="when">Digital Egypt Pioneers Initiative</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="wrap">
+      <div class="kicker">Education</div>
+      <h2>Academic Background</h2>
+      <div class="timeline-card">
+        <div class="logo-badge">E-JUST</div>
+        <div>
+          <h3>Mechatronics Engineering</h3>
+          <div class="org">Egypt-Japan University of Science and Technology (E-JUST)</div>
+          <div class="when">2nd Level · 2026 – 2029</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="wrap">
+      <div class="kicker">Skills</div>
+      <h2>What I Work With</h2>
+      <div class="skill-cols">
+        <div class="skill-group">
+          <h3>Technical Skills</h3>
+          <div class="chips">
+            <span class="chip">Advanced Python</span>
+            <span class="chip">NumPy</span>
+            <span class="chip">Pandas</span>
+            <span class="chip">SQL</span>
+            <span class="chip">ETL Processes</span>
+            <span class="chip">Data Cleaning</span>
+            <span class="chip">Data Transformation</span>
+            <span class="chip">Data Integration</span>
+            <span class="chip">Data Pipelines</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <h3>Soft Skills</h3>
+          <div class="chips">
+            <span class="chip">Problem-solving</span>
+            <span class="chip">Critical thinking</span>
+            <span class="chip">Communication</span>
+            <span class="chip">Adaptability</span>
+            <span class="chip">Team collaboration</span>
+            <span class="chip">Attention to detail</span>
+          </div>
+        </div>
+      </div>
+      <div class="lang-grid">
+        <div class="lang-card">English<div class="lv">B2–C1</div></div>
+        <div class="lang-card">Arabic<div class="lv">Native</div></div>
+        <div class="lang-card">German<div class="lv">A2</div></div>
+        <div class="lang-card">Japanese<div class="lv">N4</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <div class="wrap">
+      <div class="kicker">Projects</div>
+      <h2>Selected Work</h2>
+      <div class="projects">
+        <div class="pcard">
+          <h3>TheRest Mattress</h3>
+          <p>A responsive sleep hardware prototype built around an Arduino Uno, using a noise-detecting circuit through an amplifier and a DC fan for active skin moisture reduction.</p>
+          <div class="stack"><span>Arduino Uno</span><span>Amplifier</span><span>Sensing</span></div>
+        </div>
+        <div class="pcard">
+          <h3>Skills Gap Measuring Tool</h3>
+          <p>A Java-based application for identifying and measuring skills gaps, built with a CSS and JavaScript front end.</p>
+          <div class="stack"><span>Java</span><span>CSS</span><span>JavaScript</span></div>
+        </div>
+        <div class="pcard">
+          <h3>Natural Guard Parking</h3>
+          <p>A parking management concept from my early project portfolio — full details in progress.</p>
+          <div class="stack"><span>In progress</span></div>
+        </div>
+        <div class="pcard">
+          <h3>AeroMart</h3>
+          <p>Project details coming soon — check back shortly for the full write-up.</p>
+          <div class="stack"><span>In progress</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="services">
+    <div class="wrap">
+      <div class="kicker">Offered Services</div>
+      <h2>How I Can Help</h2>
+      <div class="services">
+        <div class="scard"><div class="num">01</div><h3>Data Pipeline Design & Automation</h3><p>Building pipelines that move data from raw sources to a clean, structured, ready-to-use state.</p></div>
+        <div class="scard"><div class="num">02</div><h3>Data Cleaning & Transformation</h3><p>Turning messy, inconsistent datasets into accurate, analysis-ready data.</p></div>
+        <div class="scard"><div class="num">03</div><h3>ETL Process Development</h3><p>Designing extract-transform-load workflows tailored to your specific data and systems.</p></div>
+        <div class="scard"><div class="num">04</div><h3>Data Integration</h3><p>Bringing data together from multiple sources into one consistent, usable structure.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="cta">
+      <h2>Let's Turn Your Data Into Clarity</h2>
+      <p>Have a dataset, a pipeline, or a problem that needs structure? I'd love to help.</p>
+      <a class="btn primary" href="mailto:nour2006saad@gmail.com">nour2006saad@gmail.com</a>
+      <a class="btn ghost" href="https://github.com/nour-amr2006" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+  <section class="thanks" style="border-top:none;">
+    <div class="wrap">
+      <p>Thank you for taking the time to read through my portfolio — I truly appreciate it, and I'm grateful to everyone who has supported and guided me to reach this point.</p>
+      <div class="sig">— Nour Amr</div>
+    </div>
+  </section>
+
+</main>
+</body>
+</html>
